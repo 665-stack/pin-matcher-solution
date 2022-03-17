@@ -13,8 +13,36 @@ function generatePin() {
     const pin = getPin();
     document.getElementById('display-pin').value = pin;
 }
+//======= calc part is here ====
 document.getElementById('key-pad').addEventListener('click', function (event) {
     const number = event.target.innerText;
-    console.log(number);
-
+    const calcInput = document.getElementById('typed-numbers');
+    //akhanker isNaN hocce, jodi number na hoy taile shetake select korbe;
+    if (isNaN(number)) {
+        if (number == 'C') {
+            calcInput.value = '';
+        }
+    }
+    else {
+        const previousNumber = calcInput.value;
+        const newNumber = previousNumber + number;
+        calcInput.value = newNumber;
+    }
 })
+//check pin. it's wrong or not;
+function verifyPin() {
+    const pin = document.getElementById('display-pin').value;
+    const typedNumbers = document.getElementById('typed-numbers').value;
+
+    const successMessage = document.getElementById('notify-success');
+
+    const failError = document.getElementById('notify-fail')
+    if (pin == typedNumbers) {
+        successMessage.style.display = 'block';
+        failError.style.display = 'none'
+    }
+    else {
+        successMessage.style.display = 'none';
+        failError.style.display = 'block';
+    }
+}
