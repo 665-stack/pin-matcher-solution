@@ -15,5 +15,6 @@ function generatePin() {
 }
 document.getElementById('key-pad').addEventListener('click', function (event) {
     const number = event.target.innerText;
+    console.log(number);
 
 })
